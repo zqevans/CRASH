@@ -139,7 +139,7 @@ class Learner:
         N, C, T = audio.shape
 
         t = torch.rand(N, 1, device=audio.device)
-        t = (self.sde.t_max - self.sde.t_min) * t + self.sde_t.t_min
+        t = (self.sde.t_max - self.sde.t_min) * t + self.sde.t_min
         noise = torch.randn_like(audio)
         noisy_audio = self.sde.perturb(audio, t, noise)
         sigma = self.sde.sigma(t)
@@ -236,7 +236,7 @@ class Learner:
                 N, C, T = audio.shape
 
                 t = torch.rand(N, 1, device=audio.device)
-                t = (self.sde.t_max - self.sde.t_min) * t + self.sde_t.t_min
+                t = (self.sde.t_max - self.sde.t_min) * t + self.sde.t_min
                 noise = torch.randn_like(audio)
                 noisy_audio = self.sde.perturb(audio, t, noise)
                 sigma = self.sde.sigma(t)
