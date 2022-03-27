@@ -33,11 +33,7 @@ class Learner:
         self.model = model
         self.ema_weights = [param.clone().detach()
                             for param in self.model.parameters()]
-        sde_kwargs = params['sde_kwargs']
-        sigma_min = sde_kwargs['sigma_min'] if 'sigma_min' in sde_kwargs else None
-        sigma_max = sde_kwargs['sigma_max'] if 'sigma_max' in sde_kwargs else None
-
-        self.sde = VpSdeCos(sigma_min, sigma_max)
+        self.sde = VpSdeCos()
         self.ema_rate = params['ema_rate']
         self.train_set = train_set
         self.test_set = test_set
