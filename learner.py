@@ -136,7 +136,7 @@ class Learner:
 
         audio = features["audio"]
 
-        N, T = audio.shape
+        N, C, T = audio.shape
 
         t = torch.rand(N, 1, device=audio.device)
         t = (self.sde.t_max - self.sde.t_min) * t + self.sde_t.t_min
@@ -233,7 +233,7 @@ class Learner:
             for features in self.test_set:
                 audio = features["audio"].cuda()
 
-                N, T = audio.shape
+                N, C, T = audio.shape
 
                 t = torch.rand(N, 1, device=audio.device)
                 t = (self.sde.t_max - self.sde.t_min) * t + self.sde_t.t_min
