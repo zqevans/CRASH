@@ -3,7 +3,7 @@ import numpy as np
 import os
 import torch
 import torchaudio
-torchaudio.set_audio_backend("sox")
+torchaudio.set_audio_backend("sox_io")
 
 
 class AudioDataset(torch.utils.data.Dataset):

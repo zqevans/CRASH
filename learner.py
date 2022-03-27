@@ -11,7 +11,7 @@ from glob import glob
 
 from dataset import from_path as dataset_from_path
 from model import UNet
-from getters import get_sde
+from sde import VpSdeCos
 
 
 def _nested_map(struct, map_fn):
@@ -33,7 +33,11 @@ class Learner:
         self.model = model
         self.ema_weights = [param.clone().detach()
                             for param in self.model.parameters()]
-        self.sde = get_sde(params['sde_type'], params['sde_kwargs'])
+        sde_kwargs = params['sde_kwargs']
+        sigma_min = sde_kwargs['sigma_min'] if 'sigma_min' in sde_kwargs else None
+        sigma_max = sde_kwargs['sigma_max'] if 'sigma_max' in sde_kwargs else None
+
+        self.sde = VpSdeCos(sigma_min, sigma_max)
         self.ema_rate = params['ema_rate']
         self.train_set = train_set
         self.test_set = test_set

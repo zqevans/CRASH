@@ -1,13 +1,13 @@
 params = {
 
     # --- Data --- : provide lists of folders that contain .wav drums
-    'train_dirs': ['/home/simon/workspace/datasets/drums_preprocessed/train'],
-    'test_dirs': ['/home/simon/workspace/datasets/drums_preprocessed/test'],
+    'train_dirs': ['/content/drive/MyDrive/Audio/Drums/Important Drums'],
+    'test_dirs': ['/content/drive/MyDrive/Audio/Drums/Au5 Drums'],
     'audio_length': 21000,  # common length on which you train the audio, all the .wav files
     # must have this minimum length
 
     # SDE
-    'sde_type': 'vp-sigmoid',  # choice
+    'sde_type': 'vp-sde',  # choice
 
     'sde_kwargs': dict(
         gamma=None,
